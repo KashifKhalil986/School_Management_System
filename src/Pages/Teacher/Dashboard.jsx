@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom"
 
 const Dashboard = () => {
     const dashboard = [
-        {name :"Add Student",logo:"./addUser.png",path:"/addStudent"},
+        {name :"Add Student",logo:"./addUser.png",path:"/add-student"},
         {name :"Attendance",logo:"./attendance.png",path:"/attendance"},
         {name :"HomeWork",logo:"./homework.png",path:"/homework"},
         {name :"Result",logo:"./result.png",path:"/result"},
@@ -34,9 +35,10 @@ const Dashboard = () => {
 
   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
     {dashboard.map((data, index) => (
-      <div
+ <Link to={data.path}>
+ <div
         key={index}
-        className="w-24 lg:w-44 h-24 lg:h-36 p-4 border bg-[#28C2A0] text-white rounded-xl shadow-md flex flex-col items-center"
+        className="w-24 lg:w-44 h-24 lg:h-36 p-4 border bg-[#28C2A0] text-white rounded-xl shadow-md flex flex-col items-center cursor-pointer "
       >
         <img
           src={data.logo}
@@ -45,6 +47,7 @@ const Dashboard = () => {
         />
         <span className="font-semibold">{data.name}</span>
       </div>
+      </Link>
     ))}
   </div>
 </div>
