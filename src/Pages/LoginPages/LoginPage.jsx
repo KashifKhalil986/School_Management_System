@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash ,faUser } from "@fortawesome/free-solid-svg-icons";
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
   // const [userName, setUserName] = useState("");
@@ -48,7 +49,6 @@ const LoginPage = () => {
         <form
           onSubmit={handleSubmit}>
           <div className="bg-white p-4 lg:p-8 w-60 lg:w-80 rounded-lg shadow-md">
-            {/* Username Field */}
             <div className="mb-6">
               <label className="block text-sm  mb-1">Username</label>
               <div className="flex items-center border-b border-gray-300">
@@ -60,7 +60,7 @@ const LoginPage = () => {
                   placeholder="Enter User Name"
                   required
                 />
-                <FontAwesomeIcon className="text-[#0C46C4]" icon={faUser} />
+                <FontAwesomeIcon className="text-[#28C2A0]" icon={faUser} />
               </div>
             </div>
 
@@ -75,18 +75,18 @@ const LoginPage = () => {
                   placeholder="Enter Password"
                   required
                 />
-                <FontAwesomeIcon onClick={()=>setShowPassword(!showPassword)} className="text-[#0C46C4]" icon={showPassword ? faEyeSlash : faEye} />
+                <FontAwesomeIcon onClick={()=>setShowPassword(!showPassword)} className="text-[#28C2A0]" icon={showPassword ? faEyeSlash : faEye} />
               </div>
             </div>
 
-            {/* Login Button */}
-            <button
-              type="submit"
-              className="w-full bg-[#0C46C4] text-white py-2 rounded-lg font-semibold">
-              Login
-            </button>
+         <Link to="/dashboard">
+  <button
+    type="button"
+    className="w-full bg-[#28C2A0] text-white py-2 rounded-lg font-semibold">
+    Login
+  </button>
+</Link>
 
-            {/* Forgot Password */}
             <p className="text-center mt-4 text-gray-400 text-sm">
               Forgot Password ?
             </p>
