@@ -9,6 +9,7 @@ import Attendance from './Pages/Teacher/Attendance'
 import Result from './Pages/Teacher/Result'
 import Notice from './Pages/Teacher/Notice'
 import Profile from './Pages/Teacher/Profile'
+import AddTeacher from './Pages/Teacher/AddTeacher'
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/result" element={<Result />} />
         <Route path="/notice" element={<Notice />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/add-teacher" element={<AddTeacher />} />
 
 
       </Routes>

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 const Dashboard = () => {
     const dashboard = [
         {name :"Add Student",logo:"./addUser.png",path:"/add-student"},
+        {name :"Add Teacher",logo:"./addUser.png",path:"/add-teacher"},
         {name :"Attendance",logo:"./attendance.png",path:"/attendance"},
         {name :"HomeWork",logo:"./homework.png",path:"/homework"},
         {name :"Result",logo:"./result.png",path:"/result"},
