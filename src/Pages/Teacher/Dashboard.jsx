@@ -6,6 +6,7 @@ const Dashboard = () => {
     { name: "Add Class", logo: "./addUser.png", path: "/add-class" },
     { name: "Add Student", logo: "./addUser.png", path: "/add-student" },
     { name: "Add Teacher", logo: "./addUser.png", path: "/add-teacher" },
+    { name: "All Teachers", logo: "./addUser.png", path: "/show-all-teachers" },
     { name: "Attendance", logo: "./attendance.png", path: "/attendance" },
     { name: "HomeWork", logo: "./homework.png", path: "/homework" },
     { name: "Result", logo: "./result.png", path: "/result" },

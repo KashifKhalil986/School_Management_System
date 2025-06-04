@@ -120,7 +120,7 @@ const AddTeacher = () => {
         // console.log("response data for id",response.data._id)
         // console.log("response data for id",response.data.name)
         // console.log("response data for id",response.data.section)
-        //         console.log("class & section", response.data.map(item => `${item.name} - ${item.section}`));
+        //console.log("class & section", response.data.map(item => `${item.name} - ${item.section}`));
       } catch (error) {
         console.log(error);
       }

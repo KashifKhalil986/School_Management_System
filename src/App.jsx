@@ -12,6 +12,7 @@ import Profile from './Pages/Teacher/Profile'
 import AddTeacher from './Pages/Teacher/AddTeacher'
 import PrivateRoute from './Components/utils/PrivateRoute' 
 import AddClass from './Pages/Teacher/AddClass'
+import AllTeachers from './Pages/Teacher/AllTeachers'
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
         <Route path="/add-teacher" element={<PrivateRoute><AddTeacher /></PrivateRoute>} />
         <Route path="/add-class" element={<PrivateRoute><AddClass /></PrivateRoute>} />
+        <Route path="/show-all-teachers" element={<PrivateRoute><AllTeachers /></PrivateRoute>} />
 
 
       </Routes>

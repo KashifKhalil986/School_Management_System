@@ -35,6 +35,7 @@ const Navbar = () => {
         { name: "Add Class", path: "/add-class" },
         { name: "Add Teacher", path: "/add-teacher" },
         { name: "Add Student", path: "/add-student" },
+        // { name: "All Teachers", path: "/show-all-teachers" },
         { name: "Homework", path: "/home-work" },
         { name: "Attendance", path: "/attendance" },
         { name: "Result", path: "/result" },
@@ -58,7 +59,7 @@ const Navbar = () => {
                     </div>
 
                     {!isDashboard ? (
-                        <div className="hidden md:flex lg:flex gap-6 text-xl">
+                        <div className="hidden md:flex lg:flex gap-4 text-xl">
                             {menuItems.map((item, index) => (
                                 <Link to={item.path} key={index}>
                                     <a className="hover:underline">
