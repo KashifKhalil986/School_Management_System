@@ -43,50 +43,64 @@ const AddTeacher = () => {
     }));
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const selectedClass = classOptions.find(c => c.id === formData.class);
+    const selectedClass = classOptions.find(c => c.id === formData.class);
 
-  console.log("Form Submitted:", formData);
-  console.log("Class ID:", formData.class);
-  console.log("Class Name:", selectedClass?.name);
-  console.log("Section:", selectedClass?.section);
+    // console.log("Form Submitted:", formData);
+    // console.log("Class ID:", formData.class);
+    // console.log("Class Name:", selectedClass?.name);
+    // console.log("Section:", selectedClass?.section);
 
-  const url = BaseUrl + Add_Teacher_End_Point;
-  const method = "POST";
+    const url = BaseUrl + Add_Teacher_End_Point;
+    const method = "POST";
 
-const obj = {
-  userName: formData.username,
-  email: formData.email,
-  password: formData.password,
-  cnic: formData.cnic,
-  // HeadmasterId: formData.headmasterId, 
-  phoneNumber: formData.phoneNumber,
-  classId: formData.class, 
-  className: selectedClass?.name || "",
-  section: selectedClass?.section || "",
-  address: formData.address,
-  bankName: formData.bankName,
-  accountNumber: formData.accountNumber,
-  salary: formData.salary,
-  status: formData.status,
-  image: imagePreview 
-};
+    const obj = {
+      userName: formData.username,
+      email: formData.email,
+      password: formData.password,
+      cnic: formData.cnic,
+      phoneNumber: formData.phoneNumber,
+      classId: formData.class,
+      ClassName: selectedClass?.name || "",
+      section: selectedClass?.section || "",
+      address: formData.address,
+      bankName: formData.bankName,
+      accountNumber: formData.accountNumber,
+      salary: formData.salary,
+      status: formData.status,
+      image: imagePreview
+    };
 
 
-  try {
-    const response = await fetchData(url, method, obj);
-    console.log("response", response);
+    try {
+      const response = await fetchData(url, method, obj);
+      console.log("response", response);
 
-    if (response.status === 200 || response.status === 201) {
-      console.log("response data", response.data);
-      // optionally reset form here
+      if (response.status === 200 || response.status === 201) {
+        console.log("response data", response.data);
+        setFormData({
+          username: "",
+          email: "",
+          password: "",
+          cnic: "",
+          phoneNumber: "",
+          address: "",
+          bankAccountNumber: "",
+          bankName: "",
+          status: "Active",
+          salary: "",
+          class: "",
+          section: "",
+        })
+        setImagePreview(null);
+        alert("form submitted successfully")
+      }
+    } catch (error) {
+      console.error("Error submitting teacher:", error);
     }
-  } catch (error) {
-    console.error("Error submitting teacher:", error);
-  }
-};
+  };
 
 
   useEffect(() => {
@@ -97,16 +111,16 @@ const obj = {
         const response = await fetchData(url, method);
 
         // const classNames = [...new Set(response.data.map(item => `${item.name} - ${item.section} - ${item._id}`))];
-const options =response.data.map((item =>({
-  id:item._id,
-  name:item.name,
-  section:item.section
-})))
+        const options = response.data.map((item => ({
+          id: item._id,
+          name: item.name,
+          section: item.section
+        })))
         setClassOptions(options);
-// console.log("response data for id",response.data._id)
-// console.log("response data for id",response.data.name)
-// console.log("response data for id",response.data.section)
-//         console.log("class & section", response.data.map(item => `${item.name} - ${item.section}`));
+        // console.log("response data for id",response.data._id)
+        // console.log("response data for id",response.data.name)
+        // console.log("response data for id",response.data.section)
+        //         console.log("class & section", response.data.map(item => `${item.name} - ${item.section}`));
       } catch (error) {
         console.log(error);
       }
@@ -164,7 +178,7 @@ const options =response.data.map((item =>({
                 value={formData.username}
                 onChange={handleOnChange}
                 className="w-full p-1 border rounded"
-                // required
+              // required
               />
             </div>
 
@@ -178,7 +192,7 @@ const options =response.data.map((item =>({
                 value={formData.email}
                 onChange={handleOnChange}
                 className="w-full p-1 border rounded"
-                // required
+              // required
               />
             </div>
           </div>
@@ -194,7 +208,7 @@ const options =response.data.map((item =>({
                 value={formData.password}
                 onChange={handleOnChange}
                 className="w-full p-1 border rounded"
-                // required
+              // required
               />
             </div>
 
@@ -208,7 +222,7 @@ const options =response.data.map((item =>({
                 value={formData.cnic}
                 onChange={handleOnChange}
                 className="w-full p-1 border rounded"
-                // required
+              // required
               />
             </div>
           </div>
@@ -224,7 +238,7 @@ const options =response.data.map((item =>({
                 value={formData.class}
                 onChange={handleOnChange}
                 className="w-full p-1 border rounded"
-                // required
+              // required
               >
                 <option value="" disabled>
                   Select Class
@@ -249,7 +263,7 @@ const options =response.data.map((item =>({
                 value={formData.phoneNumber}
                 onChange={handleOnChange}
                 className="w-full p-1 border rounded"
-                // required
+              // required
               />
             </div>
           </div>
@@ -268,7 +282,7 @@ const options =response.data.map((item =>({
                 value={formData.address}
                 onChange={handleOnChange}
                 className="w-full p-1 border rounded"
-                // required
+              // required
               />
             </div>
 
@@ -282,7 +296,7 @@ const options =response.data.map((item =>({
                 value={formData.bankName}
                 onChange={handleOnChange}
                 className="w-full p-1 border rounded"
-                // required
+              // required
               />
             </div>
           </div>
@@ -302,7 +316,7 @@ const options =response.data.map((item =>({
                 value={formData.bankAccountNumber}
                 onChange={handleOnChange}
                 className="w-full p-1 border rounded"
-                // required
+              // required
               />
             </div>
 
@@ -316,7 +330,7 @@ const options =response.data.map((item =>({
                 value={formData.salary}
                 onChange={handleOnChange}
                 className="w-full p-1 border rounded"
-                // required
+              // required
               />
             </div>
           </div>
