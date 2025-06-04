@@ -1,31 +1,48 @@
 import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash ,faUser } from "@fortawesome/free-solid-svg-icons";
-import { Link } from 'react-router-dom';
+import { faEye, faEyeSlash, faUser } from "@fortawesome/free-solid-svg-icons";
+// import { Link } from 'react-router-dom';
+import { BaseUrl } from "../../Components/Api/BaseUrl"
+import { SuperAdmin_Login_Middle_Point } from "../../Components/Api/MiddlePoint"
+import { SuperAdmin_Login_End_Point } from "../../Components/Api/EndPoint"
+import fetchData from "../../Components/Api/axios";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
-  // const [userName, setUserName] = useState("");
-  // const [password, setPassword] = useState("");
-  const [form,setForm] = useState({
-    userName :"",
-    password:""
+
+  const [form, setForm] = useState({
+    email: "",
+    password: ""
 
   })
-
+const navigate = useNavigate()
   const handleOnChange = (e) => {
-    const {name ,value} = e.target;
-    setForm({...form,[name]:value});
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
   }
-  const [showPassword,setShowPassword]=useState("false")
+  const [showPassword, setShowPassword] = useState("false")
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("form submitted successfuly")
-      console.log("userName",form.userName)
-      console.log("password",form.password)
-    
-    
+    console.log("form submitted Successfully")
+    console.log("userName", form.email)
+    console.log("password", form.password)
+    const url = BaseUrl + SuperAdmin_Login_Middle_Point + SuperAdmin_Login_End_Point;
+    const method = "POST"
+    const response = await fetchData(url, method, form)
+    console.log("response",response)
+    // console.log("api url",url)
+
+
+    if(response.status === 200 || response.status === 201 ){
+      console.log("response data",response.data)
+      localStorage.setItem('token' , response.data.access_token)
+      navigate("/dashboard");
+    }else{
+alert("error",response.error)
+    }
+
   }
   return (
     <>
@@ -53,11 +70,11 @@ const LoginPage = () => {
               <label className="block text-sm  mb-1">Username</label>
               <div className="flex items-center border-b border-gray-300">
                 <input
-                  type="text"
-                  name="username"
+                  type="email"
+                  name="email"
                   onChange={handleOnChange}
                   className="flex-1 p-2 text-gray-600 outline-none"
-                  placeholder="Enter User Name"
+                  placeholder="Enter email"
                   required
                 />
                 <FontAwesomeIcon className="text-[#28C2A0]" icon={faUser} />
@@ -68,24 +85,24 @@ const LoginPage = () => {
               <label className="block text-sm  mb-1">Password</label>
               <div className="flex items-center border-b border-gray-300">
                 <input
-                name="password"
+                  name="password"
                   type={showPassword ? "password" : "text"}
                   onChange={handleOnChange}
                   className="flex-1 p-2 text-gray-600 outline-none"
                   placeholder="Enter Password"
                   required
                 />
-                <FontAwesomeIcon onClick={()=>setShowPassword(!showPassword)} className="text-[#28C2A0]" icon={showPassword ? faEyeSlash : faEye} />
+                <FontAwesomeIcon onClick={() => setShowPassword(!showPassword)} className="text-[#28C2A0]" icon={showPassword ? faEyeSlash : faEye} />
               </div>
             </div>
 
-         <Link to="/dashboard">
-  <button
-    type="button"
-    className="w-full bg-[#28C2A0] text-white py-2 rounded-lg font-semibold">
-    Login
-  </button>
-</Link>
+            {/* <Link to="/dashboard"> */}
+            <button
+              type="submit"
+              className="w-full bg-[#28C2A0] text-white py-2 rounded-lg font-semibold">
+              Login
+            </button>
+            {/* </Link> */}
 
             <p className="text-center mt-4 text-gray-400 text-sm">
               Forgot Password ?
